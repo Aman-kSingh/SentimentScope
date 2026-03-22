@@ -1,0 +1,84 @@
+/* ============================================================
+   base.css — Reset, Typography & Color Variables
+   SentimentScope | MCA Final Year Project
+   ============================================================ */
+
+/* ── CSS Custom Properties (Variables) ── */
+/* To change the theme color, just edit --primary here! */
+:root {
+  --primary:        #6366f1;   /* Indigo - main brand color */
+  --primary-dark:   #4f46e5;   /* Darker indigo for hover */
+  --primary-light:  #ede9fe;   /* Light indigo for chips */
+
+  --green:          #22c55e;   /* Positive sentiment */
+  --red:            #ef4444;   /* Negative sentiment */
+  --amber:          #f59e0b;   /* Neutral sentiment */
+
+  --bg-page:        #f0f2f5;   /* Page background */
+  --bg-card:        #ffffff;   /* Card background */
+  --bg-input:       #ffffff;   /* Input background */
+  --bg-tag:         #f3f4f6;   /* Tag/chip background */
+
+  --text-primary:   #1a1a2e;   /* Main text */
+  --text-secondary: #6b7280;   /* Muted text */
+  --text-muted:     #9ca3af;   /* Very muted text */
+
+  --border:         #e5e7eb;   /* Card borders */
+  --border-input:   #d1d5db;   /* Input borders */
+
+  --radius-sm:      6px;
+  --radius-md:      10px;
+  --radius-lg:      14px;
+  --radius-full:    999px;
+
+  --shadow-sm:      0 1px 4px rgba(0,0,0,0.05);
+  --shadow-md:      0 2px 12px rgba(99,102,241,0.3);
+
+  --font-main:      'Segoe UI', Arial, sans-serif;
+}
+
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Base ── */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--bg-page);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* ── Color Utility Classes ── */
+.c-green  { color: var(--green);   }
+.c-red    { color: var(--red);     }
+.c-amber  { color: var(--amber);   }
+.c-purple { color: var(--primary); }
+
+/* ── Animation Keyframes ── */
+@keyframes blink {
+  0%, 100% { opacity: 1;    }
+  50%       { opacity: 0.25; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SentimentScope — Social Media Sentiment Analyzer</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/charts.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ═══════════════ HEADER ═══════════════ -->
+  <header class="header">
+    <div class="logo">S</div>
+    <div class="header-text">
+      <h1>SentimentScope</h1>
+      <p>Multi-Platform Social Media Sentiment Analyzer</p>
+    </div>
+    <div class="live-badge">
+      <div class="live-dot"></div>
+      Live Analysis
+    </div>
+  </header>
+
+  <!-- ═══════════════ MAIN ═══════════════ -->
+  <main class="container">
+
+    <!-- Error Banner (hidden by default) -->
+    <div id="error-banner" style="
+      display:none; background:#fee2e2; color:#b91c1c;
+      border:1px solid #fca5a5; border-radius:10px;
+      padding:12px 16px; margin-bottom:14px; font-size:13px; font-weight:600;">
+    </div>
+
+    <!-- Search Card -->
+    <div class="card search-card">
+
+      <!-- Platform Selector -->
+      <div class="platforms">
+        <button class="pb on" onclick="selPlat(this,'All')">🌐 All Platforms</button>
+        <!-- <button class="pb" onclick="selPlat(this,'Twitter/X')">𝕏 Twitter/X</button>
+        <button class="pb" onclick="selPlat(this,'Reddit')">🔴 Reddit</button>
+        <button class="pb" onclick="selPlat(this,'Instagram')">📸 Instagram</button> -->
+        <button class="pb" onclick="selPlat(this,'YouTube')">▶ YouTube</button> 
+      </div>
+
+      <!-- Search Input -->
+      <div class="search-row">
+        <input class="search-input" id="tin" type="text"
+               placeholder="Enter a topic, brand, or keyword to analyze..."
+               onkeydown="if(event.key==='Enter') go()" />
+        <button class="analyze-btn" id="analyze-btn" onclick="go()">🔍 Analyze</button>
+      </div>
+
+      <!-- Sample Chips -->
+      <div class="chips">
+        <span class="chip-label">Try:</span>
+        <button class="chip" onclick="q('iPhone 16')">iPhone 16</button>
+        <button class="chip" onclick="q('ChatGPT')">ChatGPT</button>
+        <button class="chip" onclick="q('Tesla')">Tesla</button>
+        <button class="chip" onclick="q('Netflix')">Netflix</button>
+        <button class="chip" onclick="q('India cricket')">India cricket</button>
+        <button class="chip" onclick="q('AI jobs')">AI jobs</button>
+        <button class="chip" onclick="q('Climate change')">Climate change</button>
+      </div>
+    </div>
+
+    <!-- Loading Spinner (hidden by default) -->
+    <div id="spinner" style="display:none; text-align:center; padding:40px 20px;">
+      <div class="spinner-ring"></div>
+      <div style="margin-top:14px; font-size:13px; color:#6b7280;">
+        Fetching real posts from YouTube &amp; Reddit...<br/>
+        <span style="font-size:11px; color:#9ca3af;">This may take 5–15 seconds</span>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" id="empty">
+      <div class="empty-icon">📊</div>
+      <div class="empty-text">
+        Enter any topic above and click <strong>Analyze</strong> to see real-time sentiment results
+      </div>
+    </div>
+
+    <!-- ═══════════════ RESULTS ═══════════════ -->
+    <div id="results" style="display:none">
+
+      <!-- API Status Badge -->
+      <div id="api-status" style="
+        display:none; padding:8px 14px; border-radius:8px;
+        font-size:12px; font-weight:600; margin-bottom:14px;">
+      </div>
+
+      <!-- Metric Cards -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-label">Posts Analyzed</div>
+          <div class="metric-value c-purple" id="m-total">—</div>
+          <div class="metric-sub" id="m-tsub">across platforms</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Positive</div>
+          <div class="metric-value c-green" id="m-pos">—</div>
+          <div class="metric-sub">sentiment</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Negative</div>
+          <div class="metric-value c-red" id="m-neg">—</div>
+          <div class="metric-sub">sentiment</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Sentiment Score</div>
+          <div class="metric-value c-purple" id="m-score">—</div>
+          <div class="metric-sub" id="m-label">overall mood</div>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="charts-row">
+        <div class="card">
+          <div class="card-title">Sentiment Distribution</div>
+          <div class="donut-wrap">
+            <canvas id="donut" width="130" height="130"></canvas>
+            <div class="donut-legend" id="dlegend"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Score by Platform</div>
+          <div id="pbars"></div>
+        </div>
+      </div>
+
+      <!-- Bar Chart -->
+      <div class="card">
+        <div class="card-title">Sentiment Breakdown (Bar Chart)</div>
+        <div class="bar-chart-wrap">
+          <canvas id="barChart"></canvas>
+        </div>
+      </div>
+
+      <!-- AI Insight -->
+      <div class="card">
+        <div class="card-title">
+          <span class="ai-badge">AI</span> Insights Summary
+        </div>
+        <div class="insight-body" id="insight-txt"></div>
+      </div>
+
+      <!-- Posts -->
+      <div class="card">
+        <div class="card-title">Posts</div>
+        <div class="filter-tabs">
+          <button class="ftab on" onclick="flt('all',this)">All</button>
+          <button class="ftab" onclick="flt('pos',this)">Positive</button>
+          <button class="ftab" onclick="flt('neg',this)">Negative</button>
+          <button class="ftab" onclick="flt('neu',this)">Neutral</button>
+        </div>
+        <div id="plist"></div>
+      </div>
+
+    </div><!-- /results -->
+
+    <footer class="footer">
+      SentimentScope &mdash; MCA Final Year Project &nbsp;|&nbsp;
+      Real-time data via YouTube API
+    </footer>
+
+  </main>
+
+  <!-- JS files (order matters) -->
+  <script src="js/data.js"></script>
+  <script src="js/sentiment.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/posts.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

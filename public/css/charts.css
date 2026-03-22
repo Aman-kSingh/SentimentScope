@@ -1,0 +1,54 @@
+/* ============================================================
+   charts.css — Chart & Platform Bar Styles
+   SentimentScope | MCA Final Year Project
+   ============================================================ */
+
+/* ── Bar Chart Canvas Wrapper ── */
+.bar-chart-wrap {
+  position: relative;
+  height: 220px;   /* Change this to make chart taller/shorter */
+  width: 100%;
+}
+
+/* ── Platform Sentiment Bars ── */
+.bar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 11px;
+  font-size: 12px;
+}
+
+/* Label on the left (e.g. "Twitter/X") */
+.bar-label {
+  width: 82px;
+  text-align: right;
+  color: var(--text-secondary);
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+/* Gray background track */
+.bar-bg {
+  flex: 1;
+  height: 10px;
+  background: #f3f4f6;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* Colored fill — width is set dynamically via JS */
+.bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.8s ease;  /* Smooth animation when bar fills */
+}
+
+/* Percentage label on the right */
+.bar-val {
+  width: 36px;
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  text-align: left;
+}
