@@ -1,5 +1,5 @@
 flask
 flask-cors
 vaderSentiment
-praw
 google-api-python-client
+gunicorn==21.2.0
