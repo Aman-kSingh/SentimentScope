@@ -1,0 +1,337 @@
+/* ============================================================
+   components.css — Cards, Buttons, Inputs, Posts, Pills
+   SentimentScope | MCA Final Year Project
+   ============================================================ */
+
+/* ── Card ── */
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-sm);
+  animation: fadeInUp 0.35s ease;
+}
+
+.card-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── AI Badge (inside card title) ── */
+.ai-badge {
+  background: var(--primary);
+  color: #fff;
+  padding: 3px 9px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* ── Metric Card ── */
+.metric-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.metric-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.metric-value {
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.metric-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ── Platform Buttons ── */
+.platforms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+/* pb = platform button */
+.pb {
+  padding: 7px 15px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border: 1.5px solid var(--border-input);
+  transition: all 0.2s;
+  font-family: var(--font-main);
+}
+
+.pb:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.pb.on {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+/* ── Search Row ── */
+.search-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1.5px solid var(--border-input);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-family: var(--font-main);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: var(--bg-input);
+  color: var(--text-primary);
+}
+
+.search-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+.analyze-btn {
+  padding: 12px 24px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font-main);
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.analyze-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.analyze-btn:active {
+  transform: translateY(0);
+}
+
+/* ── Sample Topic Chips ── */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.chip-label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.chip {
+  padding: 5px 13px;
+  background: var(--primary-light);
+  color: var(--primary);
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  cursor: pointer;
+  border: none;
+  font-family: var(--font-main);
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.chip:hover {
+  background: #c7d2fe;
+}
+
+/* ── Filter Tabs (All / Positive / Negative / Neutral) ── */
+.filter-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+/* ftab = filter tab */
+.ftab {
+  padding: 5px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--bg-tag);
+  color: var(--text-secondary);
+  border: none;
+  font-family: var(--font-main);
+  transition: all 0.2s;
+}
+
+.ftab:hover {
+  background: #e0e7ff;
+  color: var(--primary);
+}
+
+.ftab.on {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* ── Post Item ── */
+.post-item {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 12px;
+  animation: fadeInUp 0.3s ease;
+}
+
+.post-item:last-child {
+  border-bottom: none;
+}
+
+/* User avatar circle */
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.post-user {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.post-plat {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.post-time {
+  font-size: 11px;
+  color: #d1d5db;
+  margin-left: auto;
+}
+
+.post-text {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* ── Sentiment Pills ── */
+.pill {
+  padding: 2px 9px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* Positive = green */
+.pill-pos {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+/* Negative = red */
+.pill-neg {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* Neutral = yellow */
+.pill-neu {
+  background: #fef9c3;
+  color: #a16207;
+}
+
+/* ── Insight text ── */
+.insight-body {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.75;
+}
+
+/* ── Donut Legend ── */
+.donut-wrap {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.donut-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.legend-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Loading Spinner ── */
+.spinner-ring {
+  width: 44px; height: 44px;
+  border: 4px solid #e5e7eb;
+  border-top-color: #6366f1;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto;
+}
+@keyframes spin { to { transform: rotate(360deg); } }

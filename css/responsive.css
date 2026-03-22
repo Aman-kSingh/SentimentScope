@@ -1,0 +1,88 @@
+/* ============================================================
+   responsive.css — Mobile & Tablet Breakpoints
+   SentimentScope | MCA Final Year Project
+   ============================================================ */
+
+/* ── Tablet (max 768px) ── */
+@media (max-width: 768px) {
+  .header {
+    padding: 14px 18px;
+  }
+
+  .header-text h1 {
+    font-size: 17px;
+  }
+
+  .container {
+    margin: 18px auto;
+    padding: 0 14px 30px;
+  }
+
+  /* Make metrics 2 columns instead of 4 */
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Stack charts vertically */
+  .charts-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Mobile (max 480px) ── */
+@media (max-width: 480px) {
+  .header {
+    padding: 12px 14px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .live-badge {
+    margin-left: 0;
+    font-size: 10px;
+  }
+
+  .container {
+    padding: 0 10px 24px;
+  }
+
+  /* Stack search button below input on very small screens */
+  .search-row {
+    flex-direction: column;
+  }
+
+  .analyze-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Metrics: 2 columns */
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .metric-value {
+    font-size: 22px;
+  }
+
+  /* Platform buttons: wrap nicely */
+  .platforms {
+    gap: 6px;
+  }
+
+  .pb {
+    font-size: 11px;
+    padding: 6px 11px;
+  }
+
+  /* Chips wrap on small screens */
+  .chips {
+    gap: 6px;
+  }
+
+  /* Card padding smaller */
+  .card {
+    padding: 14px;
+  }
+}
