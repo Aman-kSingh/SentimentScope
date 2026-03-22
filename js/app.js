@@ -9,7 +9,8 @@
    ============================================================ */
 
 // ── Backend URL — change this if you deploy to a server ──
-var API_URL = "http://localhost:5000";
+//var API_URL = "http://localhost:5000";
+var API_URL = "https://sentimentscope-jlqu.onrender.com";
 
 // ── Global State ──
 var platSel  = "All";
