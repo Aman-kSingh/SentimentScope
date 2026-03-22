@@ -12,9 +12,9 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-import praw
 from googleapiclient.discovery import build
 import time
+
 
 app = Flask(__name__)
 CORS(app)   # Allows your HTML frontend to call this API

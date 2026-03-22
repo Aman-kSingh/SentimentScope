@@ -2,4 +2,4 @@ flask
 flask-cors
 vaderSentiment
 google-api-python-client
-gunicorn==21.2.0
+gunicorn
